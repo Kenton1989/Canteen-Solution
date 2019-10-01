@@ -74,6 +74,7 @@ class Ui_canteenSolutionWidget(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.venderList.sizePolicy().hasHeightForWidth())
         self.venderList.setSizePolicy(sizePolicy)
+        self.venderList.setIconSize(QtCore.QSize(40,40))
         self.venderList.setObjectName("venderList")
 
         self.verticalLayout_2.addWidget(self.venderList)

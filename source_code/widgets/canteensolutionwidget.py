@@ -11,7 +11,7 @@ class CanteenSolutionWidget(QWidget):
         self.ui = Ui_canteenSolutionWidget()
         self.ui.setupUi(self)
         self.ui.venderListItems = []
-        self.noAvailableItem = QListWidgetItem('No available vender')
+        self.ui.noAvailableItem = QListWidgetItem('No available vender')
         self.vendersInfo = vendersInfo
         self.setUpTimeInfoWidget()
         self.setUpVendersList()
@@ -26,7 +26,7 @@ class CanteenSolutionWidget(QWidget):
         self.timer.start(1000)
         #The timer will stop when user change the time
         self.ui.dateTimeEdit.dateTimeChanged.connect(self.timeChangedHandler)
-        #At the beginning, the time is default value, the "Set to Default" Button is hidden
+        #At the beginning, the time is default value, the "Set to Default" Button is isHidden
         self.ui.setDefaultTimeBtn.hide()
         self.ui.setDefaultTimeBtn.clicked.connect(self.setDefaultTimeChanging)
 
@@ -35,8 +35,8 @@ class CanteenSolutionWidget(QWidget):
         venderList = self.ui.venderList
         venderListItems = self.ui.venderListItems
 
-        self.noAvailableItem.setSizeHint(QSize(0, 50))
-        venderList.addItem(self.noAvailableItem)
+        self.ui.noAvailableItem.setSizeHint(QSize(0, 70))
+        venderList.addItem(self.ui.noAvailableItem)
         
         for vender in self.vendersInfo:
             item = QListWidgetItem(QIcon(vender.icon), vender.name, venderList)
@@ -94,9 +94,9 @@ class CanteenSolutionWidget(QWidget):
                 vender = item.data(Qt.UserRole)
                 if vender.isOpening(timeStamp):
                     noDisplayedVender = False
-                    item.setHidden(False)
-                    if item.isSelected():
+                    if item.isSelected() and item.isHidden():
                         self.showVenderInfo(item)
+                    item.setHidden(False)
                 else:
                     item.setHidden(True)
                     if item.isSelected():
@@ -111,20 +111,20 @@ class CanteenSolutionWidget(QWidget):
                         self.showVenderInfo(None)
                 else:
                     noDisplayedVender = False
-                    item.setHidden(False)
-                    if item.isSelected():
+                    if item.isSelected() and item.isHidden():
                         self.showVenderInfo(item)
+                    item.setHidden(False)
 
         else:
             noDisplayedVender = False
             for item in self.ui.venderListItems:
-                item.setHidden(False)
-                if item.isSelected():
+                if item.isSelected() and item.isHidden():
                     self.showVenderInfo(item)
+                item.setHidden(False)
         
         if noDisplayedVender:
-            self.noAvailableItem.setHidden(False)
-        else: self.noAvailableItem.setHidden(True)
+            self.ui.noAvailableItem.setHidden(False)
+        else: self.ui.noAvailableItem.setHidden(True)
     
 
     def showVenderInfo(self, venderItem):

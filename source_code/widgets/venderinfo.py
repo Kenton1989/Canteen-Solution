@@ -6,8 +6,8 @@ from datetime import datetime
 
 class VenderInfoPage(QWidget):
 
-    priceColumnWidth = 128
-    rowHeaderColumnWidth = 130
+    priceColumnWidth = 130
+    rowHeaderColumnWidth = 120
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -42,7 +42,7 @@ class VenderInfoWidget(QWidget):
         self.emptyPage.setAlignment(Qt.AlignCenter)
         self.adjustEmptyPagePicSize()
 
-        self.venderInfoPage.ui.manuTable.setColumnWidth(1, VenderInfoPage.priceColumnWidth)
+        self.venderInfoPage.ui.memuTable.setColumnWidth(1, VenderInfoPage.priceColumnWidth-2)
         self.adjustTableColumnSize()
         self.venderInfoPage.hide()
         #self.setStyleSheet(' { border:1px solid black }')
@@ -81,7 +81,7 @@ class VenderInfoWidget(QWidget):
             return
         else: self.venderMenu = newMenu
         
-        menuTable = self.venderInfoPage.ui.manuTable
+        menuTable = self.venderInfoPage.ui.memuTable
         menuTable.clearContents()
         menuTable.setRowCount(len(self.venderMenu))
         for i in range(len(self.venderMenu)):
@@ -100,8 +100,9 @@ class VenderInfoWidget(QWidget):
         basicInfo = self.venderInfoPage.ui.basicInfo
         basicInfo.setColumnWidth(0, basicInfo.size().width()-VenderInfoPage.rowHeaderColumnWidth)
         
-        manuTable = self.venderInfoPage.ui.manuTable
-        manuTable.setColumnWidth(0, manuTable.size().width()-VenderInfoPage.priceColumnWidth)
+        memuTable = self.venderInfoPage.ui.memuTable
+        memuTable.setColumnWidth(0, memuTable.size().width()-VenderInfoPage.priceColumnWidth)
+
 
     def adjustEmptyPagePicSize(self):
         if self.emptyPage.isHidden(): return

@@ -3,28 +3,31 @@
 # Form implementation generated from reading ui file '.\venderinfo.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.1
+#
+# WARNING! All changes made in this file will be lost!
+
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_venderInfoWidget(object):
-    def setupUi(self, venderInfoWidget):
-        venderInfoWidget.setObjectName("venderInfoWidget")
-        #venderInfoWidget.resize(893, 450)
 
-        self.horizontalLayout = QtWidgets.QHBoxLayout(venderInfoWidget)
+class Ui_venderInfoPage(object):
+    def setupUi(self, venderInfoPage):
+        venderInfoPage.setObjectName("venderInfoPage")
+        venderInfoPage.setMinimumWidth(600)
+        self.horizontalLayout = QtWidgets.QHBoxLayout(venderInfoPage)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        
-        self.venderPhoto = QtWidgets.QLabel(venderInfoWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        self.venderPhoto = QtWidgets.QLabel(venderInfoPage)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.venderPhoto.sizePolicy().hasHeightForWidth())
+        sizePolicy.setRetainSizeWhenHidden(True)
         self.venderPhoto.setSizePolicy(sizePolicy)
+        self.venderPhoto.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.venderPhoto.setMinimumSize(QtCore.QSize(300, 300))
         self.venderPhoto.setObjectName("venderPhoto")
-        self.venderPhoto.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
         self.horizontalLayout.addWidget(self.venderPhoto)
-        
-        self.venderInfo = QtWidgets.QWidget(venderInfoWidget)
+        self.venderInfo = QtWidgets.QWidget(venderInfoPage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
@@ -33,18 +36,22 @@ class Ui_venderInfoWidget(object):
         self.venderInfo.setObjectName("venderInfo")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.venderInfo)
         self.verticalLayout.setObjectName("verticalLayout")
-
         self.basicInfo = QtWidgets.QTableWidget(self.venderInfo)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.basicInfo.sizePolicy().hasHeightForWidth())
         self.basicInfo.setSizePolicy(sizePolicy)
-        self.basicInfo.setMinimumSize(QtCore.QSize(300, 0))
         self.basicInfo.setMaximumSize(QtCore.QSize(16777215, 78))
-        self.basicInfo.setShowGrid(True)
+        self.basicInfo.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.basicInfo.setTabKeyNavigation(False)
+        self.basicInfo.setProperty("showDropIndicator", False)
+        self.basicInfo.setDragDropOverwriteMode(False)
+        self.basicInfo.setSelectionMode(QtWidgets.QAbstractItemView.NoSelection)
+        self.basicInfo.setShowGrid(False)
+        self.basicInfo.setWordWrap(True)
         self.basicInfo.setObjectName("basicInfo")
-        self.basicInfo.setColumnCount(0)
+        self.basicInfo.setColumnCount(1)
         self.basicInfo.setRowCount(2)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
@@ -58,24 +65,33 @@ class Ui_venderInfoWidget(object):
         font.setWeight(75)
         item.setFont(font)
         self.basicInfo.setVerticalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.basicInfo.setHorizontalHeaderItem(0, item)
+        self.basicInfo.horizontalHeader().setVisible(False)
+        self.basicInfo.verticalHeader().setVisible(True)
         self.verticalLayout.addWidget(self.basicInfo)
-
         self.manuLabel = QtWidgets.QLabel(self.venderInfo)
         self.manuLabel.setScaledContents(False)
         self.manuLabel.setObjectName("manuLabel")
         self.verticalLayout.addWidget(self.manuLabel)
-
         self.manuTable = QtWidgets.QTableWidget(self.venderInfo)
-        self.manuTable.priceColumnWidth = 128
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(3)
         sizePolicy.setHeightForWidth(self.manuTable.sizePolicy().hasHeightForWidth())
         self.manuTable.setSizePolicy(sizePolicy)
         self.manuTable.setMinimumSize(QtCore.QSize(0, 0))
+        self.manuTable.setSizeIncrement(QtCore.QSize(0, 0))
+        self.manuTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.manuTable.setProperty("showDropIndicator", False)
+        self.manuTable.setDragDropOverwriteMode(False)
+        self.manuTable.setAlternatingRowColors(True)
+        self.manuTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.manuTable.setObjectName("manuTable")
         self.manuTable.setColumnCount(2)
-        self.manuTable.setRowCount(0)
+        self.manuTable.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        item = QtWidgets.QTableWidgetItem()
+        self.manuTable.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
         font.setBold(True)
@@ -89,35 +105,35 @@ class Ui_venderInfoWidget(object):
         font.setWeight(75)
         item.setFont(font)
         self.manuTable.setHorizontalHeaderItem(1, item)
+        self.manuTable.verticalHeader().setVisible(False)
         self.verticalLayout.addWidget(self.manuTable)
-
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
-
         self.openCalculatorBtn = QtWidgets.QPushButton(self.venderInfo)
         self.openCalculatorBtn.setObjectName("openCalculatorBtn")
         self.horizontalLayout_2.addWidget(self.openCalculatorBtn)
-        
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.horizontalLayout.addWidget(self.venderInfo)
 
-        self.retranslateUi(venderInfoWidget)
-        QtCore.QMetaObject.connectSlotsByName(venderInfoWidget)
+        self.retranslateUi(venderInfoPage)
+        QtCore.QMetaObject.connectSlotsByName(venderInfoPage)
 
-    def retranslateUi(self, venderInfoWidget):
+    def retranslateUi(self, venderInfoPage):
         _translate = QtCore.QCoreApplication.translate
-        venderInfoWidget.setWindowTitle(_translate("venderInfoWidget", "VenderInfoWidget"))
-        self.venderPhoto.setText(_translate("venderInfoWidget", "VenderPhoto"))
+        venderInfoPage.setWindowTitle(_translate("venderInfoPage", "Form"))
+        self.venderPhoto.setText(_translate("venderInfoPage", "Vender Photo"))
         self.basicInfo.setSortingEnabled(False)
         item = self.basicInfo.verticalHeaderItem(0)
-        item.setText(_translate("venderInfoWidget", "Name"))
+        item.setText(_translate("venderInfoPage", "Name"))
         item = self.basicInfo.verticalHeaderItem(1)
-        item.setText(_translate("venderInfoWidget", "Opening Time"))
-        self.manuLabel.setText(_translate("venderInfoWidget", "<b>Manu</b>"))
+        item.setText(_translate("venderInfoPage", "Opening Time"))
+        item = self.basicInfo.horizontalHeaderItem(0)
+        item.setText(_translate("venderInfoPage", "info"))
+        self.manuLabel.setText(_translate("venderInfoPage", "Manu"))
         item = self.manuTable.horizontalHeaderItem(0)
-        item.setText(_translate("venderInfoWidget", "Food"))
+        item.setText(_translate("venderInfoPage", "Food"))
         item = self.manuTable.horizontalHeaderItem(1)
-        item.setText(_translate("venderInfoWidget", "Price"))
-        self.openCalculatorBtn.setText(_translate("venderInfoWidget", "Queue Time Calculator"))
+        item.setText(_translate("venderInfoPage", "Price"))
+        self.openCalculatorBtn.setText(_translate("venderInfoPage", "Queue Time Calculator"))

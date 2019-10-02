@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\venderinfo.ui'
+# Form implementation generated from reading ui file '.\vendorinfo.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.1
 #
@@ -10,33 +10,33 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_venderInfoPage(object):
-    def setupUi(self, venderInfoPage):
-        venderInfoPage.setObjectName("venderInfoPage")
-        venderInfoPage.setMinimumWidth(600)
-        self.horizontalLayout = QtWidgets.QHBoxLayout(venderInfoPage)
+class Ui_vendorInfoPage(object):
+    def setupUi(self, vendorInfoPage):
+        vendorInfoPage.setObjectName("vendorInfoPage")
+        vendorInfoPage.setMinimumWidth(600)
+        self.horizontalLayout = QtWidgets.QHBoxLayout(vendorInfoPage)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.venderPhoto = QtWidgets.QLabel(venderInfoPage)
+        self.vendorPhoto = QtWidgets.QLabel(vendorInfoPage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.venderPhoto.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(self.vendorPhoto.sizePolicy().hasHeightForWidth())
         sizePolicy.setRetainSizeWhenHidden(True)
-        self.venderPhoto.setSizePolicy(sizePolicy)
-        self.venderPhoto.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        self.venderPhoto.setMinimumSize(QtCore.QSize(300, 300))
-        self.venderPhoto.setObjectName("venderPhoto")
-        self.horizontalLayout.addWidget(self.venderPhoto)
-        self.venderInfo = QtWidgets.QWidget(venderInfoPage)
+        self.vendorPhoto.setSizePolicy(sizePolicy)
+        self.vendorPhoto.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.vendorPhoto.setMinimumSize(QtCore.QSize(300, 300))
+        self.vendorPhoto.setObjectName("vendorPhoto")
+        self.horizontalLayout.addWidget(self.vendorPhoto)
+        self.vendorInfo = QtWidgets.QWidget(vendorInfoPage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.venderInfo.sizePolicy().hasHeightForWidth())
-        self.venderInfo.setSizePolicy(sizePolicy)
-        self.venderInfo.setObjectName("venderInfo")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.venderInfo)
+        sizePolicy.setHeightForWidth(self.vendorInfo.sizePolicy().hasHeightForWidth())
+        self.vendorInfo.setSizePolicy(sizePolicy)
+        self.vendorInfo.setObjectName("vendorInfo")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.vendorInfo)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.basicInfo = QtWidgets.QTableWidget(self.venderInfo)
+        self.basicInfo = QtWidgets.QTableWidget(self.vendorInfo)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
@@ -70,11 +70,11 @@ class Ui_venderInfoPage(object):
         self.basicInfo.horizontalHeader().setVisible(False)
         self.basicInfo.verticalHeader().setVisible(True)
         self.verticalLayout.addWidget(self.basicInfo)
-        self.memuLabel = QtWidgets.QLabel(self.venderInfo)
+        self.memuLabel = QtWidgets.QLabel(self.vendorInfo)
         self.memuLabel.setScaledContents(False)
         self.memuLabel.setObjectName("memuLabel")
         self.verticalLayout.addWidget(self.memuLabel)
-        self.memuTable = QtWidgets.QTableWidget(self.venderInfo)
+        self.memuTable = QtWidgets.QTableWidget(self.vendorInfo)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(3)
@@ -111,29 +111,29 @@ class Ui_venderInfoPage(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
-        self.openCalculatorBtn = QtWidgets.QPushButton(self.venderInfo)
+        self.openCalculatorBtn = QtWidgets.QPushButton(self.vendorInfo)
         self.openCalculatorBtn.setObjectName("openCalculatorBtn")
         self.horizontalLayout_2.addWidget(self.openCalculatorBtn)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
-        self.horizontalLayout.addWidget(self.venderInfo)
+        self.horizontalLayout.addWidget(self.vendorInfo)
 
-        self.retranslateUi(venderInfoPage)
-        QtCore.QMetaObject.connectSlotsByName(venderInfoPage)
+        self.retranslateUi(vendorInfoPage)
+        QtCore.QMetaObject.connectSlotsByName(vendorInfoPage)
 
-    def retranslateUi(self, venderInfoPage):
+    def retranslateUi(self, vendorInfoPage):
         _translate = QtCore.QCoreApplication.translate
-        venderInfoPage.setWindowTitle(_translate("venderInfoPage", "Form"))
-        self.venderPhoto.setText(_translate("venderInfoPage", "Vender Photo"))
+        vendorInfoPage.setWindowTitle(_translate("vendorInfoPage", "Form"))
+        self.vendorPhoto.setText(_translate("vendorInfoPage", "vendor Photo"))
         self.basicInfo.setSortingEnabled(False)
         item = self.basicInfo.verticalHeaderItem(0)
-        item.setText(_translate("venderInfoPage", "Name"))
+        item.setText(_translate("vendorInfoPage", "Name"))
         item = self.basicInfo.verticalHeaderItem(1)
-        item.setText(_translate("venderInfoPage", "Opening Time"))
+        item.setText(_translate("vendorInfoPage", "Opening Time"))
         item = self.basicInfo.horizontalHeaderItem(0)
-        item.setText(_translate("venderInfoPage", "info"))
-        self.memuLabel.setText(_translate("venderInfoPage", "memu"))
+        item.setText(_translate("vendorInfoPage", "info"))
+        self.memuLabel.setText(_translate("vendorInfoPage", "memu"))
         item = self.memuTable.horizontalHeaderItem(0)
-        item.setText(_translate("venderInfoPage", "Food"))
+        item.setText(_translate("vendorInfoPage", "Food"))
         item = self.memuTable.horizontalHeaderItem(1)
-        item.setText(_translate("venderInfoPage", "Price"))
-        self.openCalculatorBtn.setText(_translate("venderInfoPage", "Queue Time Calculator"))
+        item.setText(_translate("vendorInfoPage", "Price"))
+        self.openCalculatorBtn.setText(_translate("vendorInfoPage", "Queue Time Calculator"))

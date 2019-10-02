@@ -6,7 +6,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from widgets.venderinfo import VenderInfoWidget
+from widgets.vendorinfo import vendorInfoWidget
 
 class Ui_canteenSolutionWidget(object):
     def setupUi(self, canteenSolutionWidget):
@@ -56,31 +56,31 @@ class Ui_canteenSolutionWidget(object):
         self.horizontalLayout_2.setContentsMargins(-1, 0, -1, -1)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
 
-        self.VendersWidget = QtWidgets.QWidget(self.canteenInfoWidget)
-        self.VendersWidget.setObjectName("VendersWidget")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.VendersWidget)
+        self.vendorsWidget = QtWidgets.QWidget(self.canteenInfoWidget)
+        self.vendorsWidget.setObjectName("vendorsWidget")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.vendorsWidget)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         
-        self.venderTypeBox = QtWidgets.QComboBox(self.VendersWidget)
-        self.venderTypeBox.setObjectName("venderTypeBox")
-        self.venderTypeBox.addItem("")
-        self.venderTypeBox.addItem("")
-        self.venderTypeBox.addItem("")
-        self.verticalLayout_2.addWidget(self.venderTypeBox)
+        self.vendorTypeBox = QtWidgets.QComboBox(self.vendorsWidget)
+        self.vendorTypeBox.setObjectName("vendorTypeBox")
+        self.vendorTypeBox.addItem("")
+        self.vendorTypeBox.addItem("")
+        self.vendorTypeBox.addItem("")
+        self.verticalLayout_2.addWidget(self.vendorTypeBox)
 
-        self.venderList = QtWidgets.QListWidget(self.VendersWidget)
+        self.vendorList = QtWidgets.QListWidget(self.vendorsWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(2)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.venderList.sizePolicy().hasHeightForWidth())
-        self.venderList.setSizePolicy(sizePolicy)
-        self.venderList.setIconSize(QtCore.QSize(40,40))
-        self.venderList.setObjectName("venderList")
+        sizePolicy.setHeightForWidth(self.vendorList.sizePolicy().hasHeightForWidth())
+        self.vendorList.setSizePolicy(sizePolicy)
+        self.vendorList.setIconSize(QtCore.QSize(40,40))
+        self.vendorList.setObjectName("vendorList")
 
-        self.verticalLayout_2.addWidget(self.venderList)
-        self.horizontalLayout_2.addWidget(self.VendersWidget)
+        self.verticalLayout_2.addWidget(self.vendorList)
+        self.horizontalLayout_2.addWidget(self.vendorsWidget)
 
-        self.verderInfoWidget = VenderInfoWidget()
+        self.verderInfoWidget = vendorInfoWidget()
         self.verderInfoWidget.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(5)
@@ -101,6 +101,6 @@ class Ui_canteenSolutionWidget(object):
         self.timeLabel.setText(_translate("canteenSolutionWidget", "Current Time: "))
         self.dateTimeEdit.setDisplayFormat(_translate("canteenSolutionWidget", "yyyy-MM-dd hh:mm:ss"))
         self.setDefaultTimeBtn.setText(_translate("canteenSolutionWidget", "Set To Default"))
-        self.venderTypeBox.setItemText(0, _translate("canteenSolutionWidget", "Opening Vender"))
-        self.venderTypeBox.setItemText(1, _translate("canteenSolutionWidget", "Closed Vender"))
-        self.venderTypeBox.setItemText(2, _translate("canteenSolutionWidget", "All Vender"))
+        self.vendorTypeBox.setItemText(0, _translate("canteenSolutionWidget", "Opening vendor"))
+        self.vendorTypeBox.setItemText(1, _translate("canteenSolutionWidget", "Closed vendor"))
+        self.vendorTypeBox.setItemText(2, _translate("canteenSolutionWidget", "All vendor"))

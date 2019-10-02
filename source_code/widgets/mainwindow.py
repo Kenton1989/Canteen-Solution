@@ -4,23 +4,25 @@ from PyQt5.QtCore import QFile, QTextStream
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
 import sys
+
+
 class MainWindow(QMainWindow):
 
-    def __init__(self, venderInfo):
+    def __init__(self, vendorInfo):
         super().__init__()
 
         self.ui = Ui_mainWindow()
-        self.ui.setupUi(self, venderInfo)
+        self.ui.setupUi(self, vendorInfo)
         
-        self.queueCalculator = QueueCalculator(venderInfo)
+        self.queueCalculator = QueueCalculator(vendorInfo)
 
         self.ui.actionChangeTime.triggered.connect(self.changeTime)
         self.ui.actionQueueTimeCalculator.triggered.connect(self.openCalculator)
-        self.ui.centralWidget.ui.verderInfoWidget.openCalculatorRequest.connect(self.queueCalculator.openWithVender)
+        self.ui.centralWidget.ui.verderInfoWidget.openCalculatorRequest.connect(self.queueCalculator.openWithvendor)
         
-        #cssFile = open('color.css', 'r')
-        #cssText = cssFile.read()
-        #self.setStyleSheet(cssText)
+        # cssFile = open('color.css', 'r')
+        # cssText = cssFile.read()
+        # self.setStyleSheet(cssText)
 
 
     def changeTime(self):
@@ -32,4 +34,5 @@ class MainWindow(QMainWindow):
 
     
     def openCalculator(self):
-        self.queueCalculator.open
+        vendorList = self.ui.centralWidget.ui.verderList
+        self.queueCalculator.open()

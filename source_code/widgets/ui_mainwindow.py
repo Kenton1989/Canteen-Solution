@@ -12,11 +12,11 @@ from widgets.canteensolutionwidget import CanteenSolutionWidget
 
 
 class Ui_mainWindow(object):
-    def setupUi(self, mainWindow, venderInfo):
+    def setupUi(self, mainWindow, vendorInfo):
         mainWindow.setObjectName("mainWindow")
         mainWindow.resize(1200, 750)
         mainWindow.setMinimumSize(QtCore.QSize(950, 500))
-        self.centralWidget = CanteenSolutionWidget(venderInfo)
+        self.centralWidget = CanteenSolutionWidget(vendorInfo)
         self.centralWidget.setObjectName("centralWidget")
         mainWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(mainWindow)

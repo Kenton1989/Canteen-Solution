@@ -6,48 +6,48 @@ class QueueCalculator(QDialog):
     
     BAD_INPUT = -1
 
-    def __init__(self, vendersInfo):
+    def __init__(self, vendorsInfo):
         super().__init__()
 
         self.ui = Ui_queueCalculator()
         self.ui.setupUi(self)
-        self.vendersInfo = vendersInfo
+        self.vendorsInfo = vendorsInfo
 
-        self.setupVenderComboBox()
+        self.setupvendorComboBox()
         self.ui.calculateBtn.clicked.connect(self.calculateTime)
 
 
-    def setupVenderComboBox(self):
-        comboBox = self.ui.venderComboBox
-        for vender in self.vendersInfo:
-            comboBox.addItem(vender.name, vender)
+    def setupvendorComboBox(self):
+        comboBox = self.ui.vendorComboBox
+        for vendor in self.vendorsInfo:
+            comboBox.addItem(vendor.name, vendor)
         comboBox.setCurrentIndex(-1)
 
 
     def setToDefault(self):
-        self.ui.venderComboBox.setCurrentIndex(-1)
+        self.ui.vendorComboBox.setCurrentIndex(-1)
         self.ui.qNumLineEdit.setText('')
         self.output('')
         self.resize(370, 230)
 
 
-    def openWithVender(self, vender):
-        comboBox = self.ui.venderComboBox
+    def openWithvendor(self, vendor):
+        comboBox = self.ui.vendorComboBox
         self.open()
-        comboBox.setCurrentIndex(comboBox.findData(vender))
+        comboBox.setCurrentIndex(comboBox.findData(vendor))
 
 
     def calculateTime(self):        
-        if self.ui.venderComboBox.currentIndex() < 0:
-            self.output('Error: No vender is chosen.')
+        if self.ui.vendorComboBox.currentIndex() < 0:
+            self.output('Error: No vendor is chosen.')
             return QueueCalculator.BAD_INPUT
-        vender = self.ui.venderComboBox.currentData()
+        vendor = self.ui.vendorComboBox.currentData()
         
         queueLen = self.getQueueLen()
         if queueLen < 0:
             return QueueCalculator.BAD_INPUT
 
-        time = vender.queueTime(queueLen)
+        time = vendor.queueTime(queueLen)
 
         self.output('The queue time is about %.1f min'%time)
 

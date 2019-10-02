@@ -5,16 +5,16 @@ from PyQt5.QtGui import QIcon
 from datetime import datetime
 class CanteenSolutionWidget(QWidget):
     
-    def __init__(self, vendersInfo):
+    def __init__(self, vendorsInfo):
         super().__init__()
 
         self.ui = Ui_canteenSolutionWidget()
         self.ui.setupUi(self)
-        self.ui.venderListItems = []
-        self.ui.noAvailableItem = QListWidgetItem('No available vender')
-        self.vendersInfo = vendersInfo
+        self.ui.vendorListItems = []
+        self.ui.noAvailableItem = QListWidgetItem('No available vendor')
+        self.vendorsInfo = vendorsInfo
         self.setUpTimeInfoWidget()
-        self.setUpVendersList()
+        self.setUpvendorsList()
         
 
     def setUpTimeInfoWidget(self):
@@ -31,24 +31,24 @@ class CanteenSolutionWidget(QWidget):
         self.ui.setDefaultTimeBtn.clicked.connect(self.setDefaultTimeChanging)
 
 
-    def setUpVendersList(self):
-        venderList = self.ui.venderList
-        venderListItems = self.ui.venderListItems
+    def setUpvendorsList(self):
+        vendorList = self.ui.vendorList
+        vendorListItems = self.ui.vendorListItems
 
         self.ui.noAvailableItem.setSizeHint(QSize(0, 70))
-        venderList.addItem(self.ui.noAvailableItem)
+        vendorList.addItem(self.ui.noAvailableItem)
         
-        for vender in self.vendersInfo:
-            item = QListWidgetItem(QIcon(vender.icon), vender.name, venderList)
-            item.setData(Qt.UserRole, vender)
+        for vendor in self.vendorsInfo:
+            item = QListWidgetItem(QIcon(vendor.icon), vendor.name, vendorList)
+            item.setData(Qt.UserRole, vendor)
             item.setSizeHint(QSize(0, 50))
-            venderList.addItem(item)
-            venderListItems.append(item)
+            vendorList.addItem(item)
+            vendorListItems.append(item)
 
-        self.updateVenderList()
+        self.updatevendorList()
 
-        self.ui.venderList.itemClicked.connect(self.showVenderInfo)
-        self.ui.venderTypeBox.currentIndexChanged.connect(self.updateVenderList)
+        self.ui.vendorList.itemClicked.connect(self.showvendorInfo)
+        self.ui.vendorTypeBox.currentIndexChanged.connect(self.updatevendorList)
 
 
     def setTimeToNow(self):
@@ -66,7 +66,7 @@ class CanteenSolutionWidget(QWidget):
             #Then stop the timer to maintain the user-defined time
             self.timer.stop()
             self.setUserDefinedTimeView()
-        self.updateVenderList()
+        self.updatevendorList()
         self.ui.verderInfoWidget.updateMenu(qTimeStamp)
 
 
@@ -81,57 +81,57 @@ class CanteenSolutionWidget(QWidget):
         self.ui.timeLabel.setText('Current Time: ')
         self.timer.start(1000)
 
-    SHOW_OPENING_VENDER = 0
-    SHOW_CLOSED_VENDER = 1
-    SHOW_ALL_VENDER = 2
-    def updateVenderList(self):
-        noDisplayedVender = True
-        showMode = self.ui.venderTypeBox.currentIndex()
+    SHOW_OPENING_vendor = 0
+    SHOW_CLOSED_vendor = 1
+    SHOW_ALL_vendor = 2
+    def updatevendorList(self):
+        noDisplayedvendor = True
+        showMode = self.ui.vendorTypeBox.currentIndex()
         timeStamp = self.ui.dateTimeEdit.dateTime().toPyDateTime()
 
-        if showMode == CanteenSolutionWidget.SHOW_OPENING_VENDER:
-            for item in self.ui.venderListItems:
-                vender = item.data(Qt.UserRole)
-                if vender.isOpening(timeStamp):
-                    noDisplayedVender = False
+        if showMode == CanteenSolutionWidget.SHOW_OPENING_vendor:
+            for item in self.ui.vendorListItems:
+                vendor = item.data(Qt.UserRole)
+                if vendor.isOpening(timeStamp):
+                    noDisplayedvendor = False
                     if item.isSelected() and item.isHidden():
-                        self.showVenderInfo(item)
+                        self.showvendorInfo(item)
                     item.setHidden(False)
                 else:
                     item.setHidden(True)
                     if item.isSelected():
-                        self.showVenderInfo(None)
+                        self.showvendorInfo(None)
 
-        elif showMode == CanteenSolutionWidget.SHOW_CLOSED_VENDER:
-            for item in self.ui.venderListItems:
-                vender = item.data(Qt.UserRole)
-                if vender.isOpening(timeStamp):
+        elif showMode == CanteenSolutionWidget.SHOW_CLOSED_vendor:
+            for item in self.ui.vendorListItems:
+                vendor = item.data(Qt.UserRole)
+                if vendor.isOpening(timeStamp):
                     item.setHidden(True)
                     if item.isSelected():
-                        self.showVenderInfo(None)
+                        self.showvendorInfo(None)
                 else:
-                    noDisplayedVender = False
+                    noDisplayedvendor = False
                     if item.isSelected() and item.isHidden():
-                        self.showVenderInfo(item)
+                        self.showvendorInfo(item)
                     item.setHidden(False)
 
         else:
-            noDisplayedVender = False
-            for item in self.ui.venderListItems:
+            noDisplayedvendor = False
+            for item in self.ui.vendorListItems:
                 if item.isSelected() and item.isHidden():
-                    self.showVenderInfo(item)
+                    self.showvendorInfo(item)
                 item.setHidden(False)
         
-        if noDisplayedVender:
+        if noDisplayedvendor:
             self.ui.noAvailableItem.setHidden(False)
         else: self.ui.noAvailableItem.setHidden(True)
     
 
-    def showVenderInfo(self, venderItem):
-        if venderItem and venderItem.data(Qt.UserRole):
-            vender = venderItem.data(Qt.UserRole)
+    def showvendorInfo(self, vendorItem):
+        if vendorItem and vendorItem.data(Qt.UserRole):
+            vendor = vendorItem.data(Qt.UserRole)
             qTimeStamp = self.ui.dateTimeEdit.dateTime()
-            self.ui.verderInfoWidget.showInfo(vender, qTimeStamp)
+            self.ui.verderInfoWidget.showInfo(vendor, qTimeStamp)
         else:
             self.ui.verderInfoWidget.showInfo(None)
 

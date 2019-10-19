@@ -124,4 +124,6 @@ dmypy.json
 
 #ignore test files
 test*
+.idea*
+debugtool*
 

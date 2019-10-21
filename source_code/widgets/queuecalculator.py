@@ -13,11 +13,11 @@ class QueueCalculator(QDialog):
         self.ui.setupUi(self)
         self.vendorsInfo = vendorsInfo
 
-        self.setupvendorComboBox()
+        self.setupVendorComboBox()
         self.ui.calculateBtn.clicked.connect(self.calculateTime)
 
 
-    def setupvendorComboBox(self):
+    def setupVendorComboBox(self):
         comboBox = self.ui.vendorComboBox
         for vendor in self.vendorsInfo:
             comboBox.addItem(vendor.name, vendor)
@@ -31,7 +31,7 @@ class QueueCalculator(QDialog):
         self.resize(370, 230)
 
 
-    def openWithvendor(self, vendor):
+    def openWithVendor(self, vendor):
         comboBox = self.ui.vendorComboBox
         self.open()
         comboBox.setCurrentIndex(comboBox.findData(vendor))

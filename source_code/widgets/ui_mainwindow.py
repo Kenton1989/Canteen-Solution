@@ -40,7 +40,7 @@ class Ui_mainWindow(object):
 
     def retranslateUi(self, mainWindow):
         _translate = QtCore.QCoreApplication.translate
-        mainWindow.setWindowTitle(_translate("mainWindow", "Canteen A Solution"))
+        mainWindow.setWindowTitle(_translate("mainWindow", "Real-time Canteen Information System"))
         self.menuTools.setTitle(_translate("mainWindow", "&Tools"))
         self.actionChangeTime.setText(_translate("mainWindow", "Change Time to ..."))
         self.actionQueueTimeCalculator.setText(_translate("mainWindow", "Queue Time Calculator"))

@@ -80,15 +80,15 @@ class Ui_canteenSolutionWidget(object):
         self.verticalLayout_2.addWidget(self.vendorList)
         self.horizontalLayout_2.addWidget(self.vendorsWidget)
 
-        self.verderInfoWidget = vendorInfoWidget()
-        self.verderInfoWidget.setEnabled(True)
+        self.vendorInfoWidget = vendorInfoWidget()
+        self.vendorInfoWidget.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(5)
-        sizePolicy.setHeightForWidth(self.verderInfoWidget.sizePolicy().hasHeightForWidth())
-        self.verderInfoWidget.setSizePolicy(sizePolicy)
-        self.verderInfoWidget.setMinimumSize(QtCore.QSize(300, 0))
-        self.verderInfoWidget.setObjectName("verderInfoWidget")
-        self.horizontalLayout_2.addWidget(self.verderInfoWidget)
+        sizePolicy.setHeightForWidth(self.vendorInfoWidget.sizePolicy().hasHeightForWidth())
+        self.vendorInfoWidget.setSizePolicy(sizePolicy)
+        self.vendorInfoWidget.setMinimumSize(QtCore.QSize(300, 0))
+        self.vendorInfoWidget.setObjectName("vendorInfoWidget")
+        self.horizontalLayout_2.addWidget(self.vendorInfoWidget)
 
         self.verticalLayout.addWidget(self.canteenInfoWidget)
 

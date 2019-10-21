@@ -18,7 +18,7 @@ class MainWindow(QMainWindow):
 
         self.ui.actionChangeTime.triggered.connect(self.changeTime)
         self.ui.actionQueueTimeCalculator.triggered.connect(self.openCalculator)
-        self.ui.centralWidget.ui.verderInfoWidget.openCalculatorRequest.connect(self.queueCalculator.openWithvendor)
+        self.ui.centralWidget.ui.vendorInfoWidget.openCalculatorRequest.connect(self.queueCalculator.openWithVendor)
         
         # cssFile = open('color.css', 'r')
         # cssText = cssFile.read()
@@ -28,11 +28,11 @@ class MainWindow(QMainWindow):
     def changeTime(self):
         centralWidget = self.ui.centralWidget
         centralWidget.timer.start(10000000)
-        centralWidget.setUserDefinedTimeView()
+        centralWidget.setUserDefinedTime()
         centralWidget.ui.dateTimeEdit.setFocus(True)
         centralWidget.ui.dateTimeEdit.selectAll()
 
     
     def openCalculator(self):
-        vendorList = self.ui.centralWidget.ui.verderList
+        vendorList = self.ui.centralWidget.ui.vendorList
         self.queueCalculator.open()

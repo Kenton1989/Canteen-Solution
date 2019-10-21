@@ -126,4 +126,5 @@ dmypy.json
 test*
 .idea*
 debugtool*
+*/.vscode/*
 

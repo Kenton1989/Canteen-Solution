@@ -1,8 +1,8 @@
-from widgets.ui_vendorinfo import Ui_vendorInfoPage
 from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QTableWidgetItem
-from datetime import datetime
+
+from widgets.ui_vendorinfo import Ui_vendorInfoPage
 
 class vendorInfoPage(QWidget):
 
@@ -24,10 +24,10 @@ class vendorInfoWidget(QWidget):
         self.vendorInfoPage = vendorInfoPage(self)
         self.emptyPage = QLabel(self)
         
-        self.canAPic = QPixmap.fromImage(QImage('test_image\cana.png'))
+        self.canAPic = QPixmap.fromImage(QImage('test_image\\cana.png'))
         self.vendorMenu = []
         self.vendorImg = QPixmap()
-        self.currentvendor = None
+        self.currentVendor = None
 
         self.setupUi()
 
@@ -53,12 +53,12 @@ class vendorInfoWidget(QWidget):
             self.emptyPage.hide()
             self.vendorInfoPage.show()
             
-            if self.currentvendor is not vendorInfo:
-                self.currentvendor = vendorInfo
+            if self.currentVendor is not vendorInfo:
+                self.currentVendor = vendorInfo
                 
                 #self.vendorInfoPage.ui.vendorPhoto.resize()
                 self.vendorImg = QPixmap.fromImage(QImage(vendorInfo.photo))
-                self.adjustvendorPhotoSize(False)
+                self.adjustVendorPhotoSize(False)
 
                 basicInfo = self.vendorInfoPage.ui.basicInfo
                 basicInfo.setItem(0, 0, QTableWidgetItem(vendorInfo.name))
@@ -76,7 +76,7 @@ class vendorInfoWidget(QWidget):
     def updateMenu(self, qTimeStamp, considerIfItIsShow = True):
         if considerIfItIsShow and self.vendorInfoPage.isHidden(): return
         
-        newMenu = self.currentvendor.menu(qTimeStamp.toPyDateTime())
+        newMenu = self.currentVendor.menu(qTimeStamp.toPyDateTime())
         if newMenu == self.vendorMenu:
             return
         else: self.vendorMenu = newMenu
@@ -93,7 +93,7 @@ class vendorInfoWidget(QWidget):
         _ = e #avoid unused parameter warning
         self.adjustTableColumnSize()
         self.adjustEmptyPagePicSize()
-        self.adjustvendorPhotoSize()
+        self.adjustVendorPhotoSize()
 
 
     def adjustTableColumnSize(self):
@@ -105,14 +105,16 @@ class vendorInfoWidget(QWidget):
 
 
     def adjustEmptyPagePicSize(self):
-        if self.emptyPage.isHidden(): return
+        if self.emptyPage.isHidden():
+            return
 
         newPic = self.canAPic.scaled(self.size(), Qt.KeepAspectRatio)
         self.emptyPage.setPixmap(newPic)
 
 
-    def adjustvendorPhotoSize(self, considerIfItIsShow = True):
-        if considerIfItIsShow and self.vendorInfoPage.isHidden(): return
+    def adjustVendorPhotoSize(self, considerIfItIsShow = True):
+        if considerIfItIsShow and self.vendorInfoPage.isHidden():
+            return
         
         photo = self.vendorInfoPage.ui.vendorPhoto
         (photo.size())
@@ -121,4 +123,4 @@ class vendorInfoWidget(QWidget):
 
     
     def openCalculator(self):
-        self.openCalculatorRequest.emit(self.currentvendor)
+        self.openCalculatorRequest.emit(self.currentVendor)

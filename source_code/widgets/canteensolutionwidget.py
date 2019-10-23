@@ -41,7 +41,8 @@ class CanteenSolutionWidget(QWidget):
         vendorList.addItem(self.ui.noAvailableItem)
 
         for vendor in self.vendorsInfo:
-            item = QListWidgetItem(QIcon(vendor.icon), vendor.name, vendorList)
+            #item = QListWidgetItem(QIcon(vendor.icon), vendor.name, vendorList)
+            item = QListWidgetItem(vendor.name, vendorList)
             item.setData(Qt.UserRole, vendor)
             item.setSizeHint(QSize(0, 50))
             vendorList.addItem(item)

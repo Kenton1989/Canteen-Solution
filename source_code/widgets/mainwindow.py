@@ -1,6 +1,6 @@
 from widgets.ui_mainwindow import Ui_mainWindow
 from widgets.queuecalculator import QueueCalculator
-from PyQt5.QtCore import QFile, QTextStream
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
 import sys
@@ -34,5 +34,7 @@ class MainWindow(QMainWindow):
 
     
     def openCalculator(self):
-        vendorList = self.ui.centralWidget.ui.vendorList
-        self.queueCalculator.open()
+        vendorItem = self.ui.centralWidget.ui.vendorList.currentItem()
+        if vendorItem:
+            self.queueCalculator.openWithVendor(vendorItem.data(Qt.UserRole))
+        else: self.queueCalculator.open()

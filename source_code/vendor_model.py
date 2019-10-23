@@ -5,11 +5,11 @@ lunch_time = [time(11), time(13)]
 dinner_time = [time(18), time(20)]
 
 class Vendor(object):
-    def __init__(self, name, photopath, queuingK, openhourstr, menus = []):
+    def __init__(self, name, photopath, queuingK, openhourstr):
         self.name = name
         self.photo = photopath
         self.queuingK = queuingK
-        self.menus = menus
+        self.menus = []
         self.openingTime = openhourstr
         self.opentime = []
 
@@ -73,7 +73,7 @@ def get_menus(vendorlist):
         vendor = vendorlist[index]
         for l in csv_reader:
             if len(l[0]) == 0:
-                vendor.opentime.append([time(), time()])
+                vendor.opentime.append(None)
                 index += 1
                 if index >= len(vendorlist):
                     break

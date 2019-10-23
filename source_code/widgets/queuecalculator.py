@@ -18,6 +18,7 @@ class QueueCalculator(QDialog):
 
 
     def setupVendorComboBox(self):
+		# add the data of vendor into the combo box
         comboBox = self.ui.vendorComboBox
         for vendor in self.vendorsInfo:
             comboBox.addItem(vendor.name, vendor)
@@ -25,6 +26,8 @@ class QueueCalculator(QDialog):
 
 
     def setToDefault(self):
+		# set all the widget to the default value (empty)
+		# will be called when the dialog is closed
         self.ui.vendorComboBox.setCurrentIndex(-1)
         self.ui.qNumLineEdit.setText('')
         self.output('')
@@ -32,12 +35,16 @@ class QueueCalculator(QDialog):
 
 
     def openWithVendor(self, vendor):
+		# open the dialog and set the content of vendor combo box
+		# to the given one
         comboBox = self.ui.vendorComboBox
         self.open()
         comboBox.setCurrentIndex(comboBox.findData(vendor))
 
 
-    def calculateTime(self):        
+    def calculateTime(self):
+		# calculate the time to wait and put the result in the output label
+		# if something wrong happens, the error message will be put in the output label
         if self.ui.vendorComboBox.currentIndex() < 0:
             self.output('Error: No vendor is chosen.')
             return QueueCalculator.BAD_INPUT
@@ -52,10 +59,10 @@ class QueueCalculator(QDialog):
         self.output('The queue time is about %.1f min'%time)
 
 
-    #return the queue number user inputed in ui.qNumLineEdit if it can be parsed
-    #return BAD_INPUT (-1) if input is invalid
+    
     def getQueueLen(self):
-        
+        # return the queue number user input in ui.qNumLineEdit if it can be parsed
+		# if input is invalid, print error meaasge in the output label and return BAD_INPUT (-1)
         inputVal = self.ui.qNumLineEdit.text().strip()
         if not inputVal:
             self.output('Error: The queue length is empty.')

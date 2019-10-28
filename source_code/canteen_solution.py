@@ -1,13 +1,14 @@
-from widgets import mainwindow
-from vendor_model import allVendor
-from PyQt5.QtWidgets import QApplication
 import sys
+from PyQt5.QtWidgets import QApplication
+from vendor_model import allVendor
+from widgets import mainwindow
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    window = mainwindow.MainWindow(allVendor())
+    vendorInfo = allVendor()
+    window = mainwindow.MainWindow(vendorInfo)
     window.show()
-    
+
     sys.exit(app.exec_())
 

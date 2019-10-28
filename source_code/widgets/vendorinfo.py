@@ -18,13 +18,13 @@ class vendorInfoPage(QWidget):
 
 class vendorInfoWidget(QWidget):
     openCalculatorRequest = pyqtSignal(object)
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent):
+        super().__init__(parent)
 
         self.vendorInfoPage = vendorInfoPage(self)
         self.emptyPage = QLabel(self)
         
-        self.canAPic = QPixmap.fromImage(QImage('test_image\\cana.png'))
+        self.canAPic = QPixmap.fromImage(QImage('images\\can_a.png'))
         self.vendorMenu = []
         self.vendorImg = QPixmap()
         self.currentVendor = None
@@ -74,7 +74,8 @@ class vendorInfoWidget(QWidget):
 
 
     def updateMenu(self, qTimeStamp, considerIfItIsShow = True):
-        if considerIfItIsShow and self.vendorInfoPage.isHidden(): return
+        if considerIfItIsShow and self.vendorInfoPage.isHidden():
+            return
         
         newMenu = self.currentVendor.menu(qTimeStamp.toPyDateTime())
         if newMenu == self.vendorMenu:

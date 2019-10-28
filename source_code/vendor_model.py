@@ -18,27 +18,27 @@ class Vendor(object):
             return []
         day = timeStamp.weekday()
         t = timeStamp.time()
-        m  = self.menus[day]
+        m = self.menus[day]
         menu_result = []
         menu_result.append([m.Dish1, m.Price1])
         menu_result.append([m.Dish2, m.Price2])
-        if (lunch_time[0] <= t <= lunch_time[1]):
+        if lunch_time[0] <= t <= lunch_time[1]:
             menu_result.append([m.LunchDish, m.LunchPrice])
-        if (dinner_time[0] <= t <= dinner_time[1]):
+        if dinner_time[0] <= t <= dinner_time[1]:
             menu_result.append([m.DinnerDish, m.DinnerPrice])
 
         return menu_result
 
-    def isOpening(self,timeStamp):
+    def isOpening(self, timeStamp):
         day = timeStamp.weekday()
         t = timeStamp.time()
         today_opening_time = self.opentime[day]
-        if (today_opening_time[0] == today_opening_time[1]):
+        if today_opening_time[0] == today_opening_time[1]:
             return False
 
         return today_opening_time[0] <= t <= today_opening_time[1]
 
-    def queueTime(self,queueLen):
+    def queueTime(self, queueLen):
         return queueLen * self.queuingK
 
 

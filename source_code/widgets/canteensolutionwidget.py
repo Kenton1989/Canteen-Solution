@@ -2,13 +2,14 @@ from datetime import datetime
 
 from PyQt5.QtCore import QTimer, QDateTime, Qt, QSize
 from PyQt5.QtWidgets import QWidget, QListWidgetItem
-from PyQt5.QtGui import QIcon
 
 from widgets.ui_canteenwidget import Ui_canteenSolutionWidget
+from widgets.blinking_widget import make_label_can_blink
+
 class CanteenSolutionWidget(QWidget):
 
-    def __init__(self, vendorsInfo):
-        super().__init__()
+    def __init__(self, parent, vendorsInfo):
+        super().__init__(parent)
 
         self.ui = Ui_canteenSolutionWidget()
         self.ui.setupUi(self)
@@ -28,7 +29,9 @@ class CanteenSolutionWidget(QWidget):
         self.timer.start(1000)
         # At the beginning, the time is default value, so set the default time view.
         self.__setDefaultTimeView()
-
+        
+        make_label_can_blink(self.ui.timeLabel)
+        
         self.ui.dateTimeEdit.dateTimeChanged.connect(self.__timeChangedHandler)
         self.ui.setDefaultTimeBtn.clicked.connect(self.setDefaultTime)
 
@@ -120,7 +123,10 @@ class CanteenSolutionWidget(QWidget):
         if noDisplayedVendor:
             self.ui.noAvailableItem.setHidden(False)
         else: self.ui.noAvailableItem.setHidden(True)
-    
+
+
+    def vendorListIsEmpty(self):
+        return not self.ui.noAvailableItem.isHidden()
 
     def setTimeToNow(self):
         self.ui.dateTimeEdit.setDateTime(QDateTime(datetime.now()))

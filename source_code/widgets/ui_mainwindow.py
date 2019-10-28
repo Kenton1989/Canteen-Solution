@@ -16,7 +16,7 @@ class Ui_mainWindow(object):
         mainWindow.setObjectName("mainWindow")
         mainWindow.resize(1200, 750)
         mainWindow.setMinimumSize(QtCore.QSize(950, 500))
-        self.centralWidget = CanteenSolutionWidget(vendorInfo)
+        self.centralWidget = CanteenSolutionWidget(mainWindow, vendorInfo)
         self.centralWidget.setObjectName("centralWidget")
         mainWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QtWidgets.QMenuBar(mainWindow)

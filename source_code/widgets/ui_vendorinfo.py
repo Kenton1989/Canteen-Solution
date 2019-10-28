@@ -132,7 +132,7 @@ class Ui_vendorInfoPage(object):
         item.setText(_translate("vendorInfoPage", "Opening Time"))
         item = self.basicInfo.horizontalHeaderItem(0)
         item.setText(_translate("vendorInfoPage", "info"))
-        self.memuLabel.setText(_translate("vendorInfoPage", "memu"))
+        self.memuLabel.setText(_translate("vendorInfoPage", "Memu"))
         item = self.memuTable.horizontalHeaderItem(0)
         item.setText(_translate("vendorInfoPage", "Food"))
         item = self.memuTable.horizontalHeaderItem(1)

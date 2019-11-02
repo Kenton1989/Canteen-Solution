@@ -4,18 +4,23 @@ from PyQt5.QtWidgets import QDialog
 from widgets.blinking_widget import make_label_can_blink, blink
 
 class QueueCalculator(QDialog):
-    
+
     BAD_INPUT = -1
 
     def __init__(self, parent, vendorsInfo):
         super().__init__(parent)
 
+        # store database
+        self.vendorsInfo = vendorsInfo
+        # set up basic UI
         self.ui = Ui_queueCalculator()
         self.ui.setupUi(self)
-        self.vendorsInfo = vendorsInfo
-
+        # fill the list of combo box with the database
         self.setupVendorComboBox()
+        # let the output can blink
+        # when error happens, the hint will more obvious
         make_label_can_blink(self.ui.outputLabel)
+
         self.ui.calculateBtn.clicked.connect(self.calculateTime)
 
 
@@ -40,7 +45,7 @@ class QueueCalculator(QDialog):
 		# open the dialog and set the content of vendor combo box
 		# to the given one
         comboBox = self.ui.vendorComboBox
-        self.open()
+        self.show()
         comboBox.setCurrentIndex(comboBox.findData(vendor))
 
 
@@ -51,7 +56,7 @@ class QueueCalculator(QDialog):
             self.output('Error: No vendor is chosen.', True)
             return QueueCalculator.BAD_INPUT
         vendor = self.ui.vendorComboBox.currentData()
-        
+        # get the length of queue from user input.
         queueLen = self.getQueueLen()
         if queueLen < 0:
             return QueueCalculator.BAD_INPUT
@@ -61,7 +66,7 @@ class QueueCalculator(QDialog):
         self.output('The queue time is about %.1f min'%time)
 
 
-    
+
     def getQueueLen(self):
         # return the queue number user input in ui.qNumLineEdit if it can be parsed
 		# if input is invalid, print error meaasge in the output label and return BAD_INPUT (-1)
@@ -75,15 +80,18 @@ class QueueCalculator(QDialog):
         except ValueError:
             self.output('Error: The queue length is not integer.', True)
             return QueueCalculator.BAD_INPUT
-        
+
         if num < 0:
             self.output('Error: The queue length is negative.', True)
+            return QueueCalculator.BAD_INPUT
 
         return num
-    
+
 
     def output(self, meg, isErr = False):
+        # print the message on the UI in a label
         self.ui.outputLabel.setText(meg)
+        # for error message, blinking will make it more obvious
         if isErr:
             blink(self.ui.outputLabel)
 

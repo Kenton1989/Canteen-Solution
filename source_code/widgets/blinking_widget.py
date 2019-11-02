@@ -5,7 +5,7 @@ def make_label_can_blink(widget):
     widget.blinkCounter = 0
     widget.blinkText = ""
     widget.blinkTimer.setInterval(100)
-    widget.blinkTimer.timeout.connect(lambda: blinkLoop(widget))
+    widget.blinkTimer.timeout.connect(lambda: blink_loop(widget))
 
 
 def blink(widget):
@@ -14,7 +14,7 @@ def blink(widget):
     widget.blinkTimer.start()
 
 
-def blinkLoop(widget):
+def blink_loop(widget):
     if widget.blinkCounter == 0:
         widget.blinkTimer.stop()
         return

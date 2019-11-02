@@ -6,9 +6,6 @@ from widgets.ui_vendorinfo import Ui_vendorInfoPage
 
 class vendorInfoPage(QWidget):
 
-    priceColumnWidth = 130
-    rowHeaderColumnWidth = 120
-
     def __init__(self, parent):
         super().__init__(parent)
 
@@ -17,111 +14,115 @@ class vendorInfoPage(QWidget):
 
 
 class vendorInfoWidget(QWidget):
-    openCalculatorRequest = pyqtSignal(object)
+
     def __init__(self, parent):
         super().__init__(parent)
 
         self.vendorInfoPage = vendorInfoPage(self)
-        self.emptyPage = QLabel(self)
-        
-        self.canAPic = QPixmap.fromImage(QImage('images\\can_a.png'))
+        self.welcomePage = QLabel(self)
+
+        self.canAPic = QPixmap.fromImage(QImage('images/can_a.png'))
+        # store the data of displaying vendor (default is nothing)
         self.vendorMenu = []
         self.vendorImg = QPixmap()
         self.currentVendor = None
 
         self.setupUi()
 
-        self.vendorInfoPage.ui.openCalculatorBtn.clicked.connect(self.openCalculator)
-
 
     def setupUi(self):
+        # put two page in a widget
         layout = QVBoxLayout(self)
-        layout.addWidget(self.emptyPage)
+        layout.addWidget(self.welcomePage)
         layout.addWidget(self.vendorInfoPage)
-
-        self.emptyPage.setAlignment(Qt.AlignCenter)
-        self.adjustEmptyPagePicSize()
-
-        self.vendorInfoPage.ui.memuTable.setColumnWidth(1, vendorInfoPage.priceColumnWidth-2)
+        # set up ui
+        self.welcomePage.setAlignment(Qt.AlignCenter)
+        self.adjustWelcomePagePicSize()
+        self.vendorInfoPage.ui.memuTable.setColumnWidth(1, 128)
         self.adjustTableColumnSize()
+        # hide one and keep another one showing
         self.vendorInfoPage.hide()
-        #self.setStyleSheet(' { border:1px solid black }')
 
 
     def showInfo(self, vendorInfo = None, qTimeStamp = None):
+        # show the information provided by vendorInfo
+        # if it is None, show the welcome page
         if vendorInfo:
-            self.emptyPage.hide()
+            self.welcomePage.hide()
             self.vendorInfoPage.show()
-            
+            # update the information of vendor to be shown
             if self.currentVendor is not vendorInfo:
                 self.currentVendor = vendorInfo
-                
-                #self.vendorInfoPage.ui.vendorPhoto.resize()
-                self.vendorImg = QPixmap.fromImage(QImage(vendorInfo.photo))
-                self.adjustVendorPhotoSize(False)
 
+                self.vendorImg = QPixmap.fromImage(QImage(vendorInfo.photo))
+                # shorten the name
                 basicInfo = self.vendorInfoPage.ui.basicInfo
                 basicInfo.setItem(0, 0, QTableWidgetItem(vendorInfo.name))
                 basicInfo.setItem(1, 0, QTableWidgetItem(vendorInfo.openingTime))
-
-            self.updateMenu(qTimeStamp, False)
-            
+            # update menu
+            self.updateMenu(qTimeStamp)
+            # update the view
+            self.adjustVendorPhotoSize()
             self.adjustTableColumnSize()
         else:
             self.vendorInfoPage.hide()
-            self.emptyPage.show()
-            self.adjustEmptyPagePicSize()
+            self.welcomePage.show()
+            self.adjustWelcomePagePicSize()
 
 
-    def updateMenu(self, qTimeStamp, considerIfItIsShow = True):
-        if considerIfItIsShow and self.vendorInfoPage.isHidden():
+    def updateMenu(self, qTimeStamp):
+        # if the info page is hidden, stop running to minimize the cost
+        if self.vendorInfoPage.isHidden():
             return
-        
+
+        # using toPyDateTime is because the database accept python datetime.
         newMenu = self.currentVendor.menu(qTimeStamp.toPyDateTime())
+        # if the menu doesn't change, just return
         if newMenu == self.vendorMenu:
             return
-        else: self.vendorMenu = newMenu
-        
+
+        # shorten variable name
         menuTable = self.vendorInfoPage.ui.memuTable
+        # update menu table
+        self.vendorMenu = newMenu
         menuTable.clearContents()
         menuTable.setRowCount(len(self.vendorMenu))
         for i in range(len(self.vendorMenu)):
+            # set food name
             menuTable.setItem(i, 0, QTableWidgetItem(self.vendorMenu[i][0]))
+            # set price
             menuTable.setItem(i, 1, QTableWidgetItem(self.vendorMenu[i][1]))
 
 
     def resizeEvent(self, e):
-        _ = e #avoid unused parameter warning
+        super().resizeEvent(e)
         self.adjustTableColumnSize()
-        self.adjustEmptyPagePicSize()
+        self.adjustWelcomePagePicSize()
         self.adjustVendorPhotoSize()
 
 
     def adjustTableColumnSize(self):
         basicInfo = self.vendorInfoPage.ui.basicInfo
-        basicInfo.setColumnWidth(0, basicInfo.size().width()-vendorInfoPage.rowHeaderColumnWidth)
-        
+        basicInfo.setColumnWidth(0, basicInfo.size().width()-120)
+
         memuTable = self.vendorInfoPage.ui.memuTable
-        memuTable.setColumnWidth(0, memuTable.size().width()-vendorInfoPage.priceColumnWidth)
+        memuTable.setColumnWidth(0, memuTable.size().width()-130)
 
 
-    def adjustEmptyPagePicSize(self):
-        if self.emptyPage.isHidden():
+    def adjustWelcomePagePicSize(self):
+        # if the image is hidden, just return to minimize the cost
+        if self.welcomePage.isHidden():
             return
-
+        # scale the photo to fill the widget
         newPic = self.canAPic.scaled(self.size(), Qt.KeepAspectRatio)
-        self.emptyPage.setPixmap(newPic)
+        self.welcomePage.setPixmap(newPic)
 
 
-    def adjustVendorPhotoSize(self, considerIfItIsShow = True):
-        if considerIfItIsShow and self.vendorInfoPage.isHidden():
+    def adjustVendorPhotoSize(self):
+        # if the image is hidden, just return to minimize the cost
+        if self.vendorInfoPage.isHidden():
             return
-        
+        # scale the photo to fill the widget
         photo = self.vendorInfoPage.ui.vendorPhoto
-        (photo.size())
         newPhoto = self.vendorImg.scaled(photo.size(), Qt.KeepAspectRatio)
         photo.setPixmap(newPhoto)
-
-    
-    def openCalculator(self):
-        self.openCalculatorRequest.emit(self.currentVendor)

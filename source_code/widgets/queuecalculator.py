@@ -51,19 +51,35 @@ class QueueCalculator(QDialog):
 
     def calculateTime(self):
 		# calculate the time to wait and put the result in the output label
-		# if something wrong happens, the error message will be put in the output label
+		# if some error happens, the error message will be put in the output label
         if self.ui.vendorComboBox.currentIndex() < 0:
-            self.output('Error: No vendor is chosen.', True)
-            return QueueCalculator.BAD_INPUT
+            self.errorMsg('Error: No vendor is chosen.')
+            return
         vendor = self.ui.vendorComboBox.currentData()
         # get the length of queue from user input.
         queueLen = self.getQueueLen()
+        # incase of fail to get a positive number
         if queueLen < 0:
-            return QueueCalculator.BAD_INPUT
+            return
+        
+        # incase of the extremely large input
+        if queueLen > 10000:
+            self.errorMsg("Serious? So many prople in Canteen A?")
+            return
 
-        time = vendor.queueTime(queueLen)
+        # calculate the queue time
+        queueTime = vendor.queueTime(queueLen)
 
-        self.output('The queue time is about %.1f min'%time)
+        if queueTime < 0.1:
+            self.output('It is your turn now.')
+        elif queueTime < 1:
+            self.output('The queue time is about %.1f seconds' % (queueTime*60))
+        elif queueTime < 30:
+            self.output('The queue time is about %.1f min'%queueTime)
+        else:
+            self.output('The queue time is about %.1f min.\n'%queueTime +
+                        'It is recommended to change a stall.')
+        
 
 
 
@@ -72,28 +88,32 @@ class QueueCalculator(QDialog):
 		# if input is invalid, print error meaasge in the output label and return BAD_INPUT (-1)
         inputVal = self.ui.qNumLineEdit.text().strip()
         if not inputVal:
-            self.output('Error: The queue length is empty.', True)
+            self.errorMsg('Error: The queue length is empty.')
             return QueueCalculator.BAD_INPUT
 
         try:
             num = int(inputVal)
         except ValueError:
-            self.output('Error: The queue length is not integer.', True)
+            self.errorMsg('Error: The queue length is not integer.')
             return QueueCalculator.BAD_INPUT
 
         if num < 0:
-            self.output('Error: The queue length is negative.', True)
+            self.errorMsg('Error: The queue length is negative.')
             return QueueCalculator.BAD_INPUT
 
         return num
 
 
-    def output(self, meg, isErr = False):
+    def output(self, msg):
         # print the message on the UI in a label
-        self.ui.outputLabel.setText(meg)
-        # for error message, blinking will make it more obvious
-        if isErr:
-            blink(self.ui.outputLabel)
+        self.ui.outputLabel.setText(msg)
+    
+    
+    def errorMsg(self, msg):
+        # print the message on the UI in a label
+        self.ui.outputLabel.setText(msg)
+        # blink to obviously notify
+        blink(self.ui.outputLabel)
 
 
     def closeEvent(self, e):

@@ -73,7 +73,7 @@ class QueueCalculator(QDialog):
         if queueTime < 0.1:
             self.output('It is your turn now :)')
         elif queueTime < 1:
-            self.output('The queue time is about %.1f seconds' % (queueTime*60))
+            self.output('The queue time is about %.1f seconds' % round(queueTime*60))
         elif queueTime < 1.05:
             self.output('The queue time is about 1 minute.')            
         elif queueTime < 30:

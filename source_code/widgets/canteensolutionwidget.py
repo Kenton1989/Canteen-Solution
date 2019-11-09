@@ -120,11 +120,11 @@ class CanteenSolutionWidget(QWidget):
             for item in self.ui.vendorListItems:
                 vendor = item.data(Qt.UserRole)
                 if vendor.isOpening(timeStamp):
-                    item.setHidden(False)
                     # recover the hidden page of the stall
                     # if the item is selected before
                     if item.isSelected() and item.isHidden():
                         self.showVendorInfo(item)
+                    item.setHidden(False)
                     noDisplayedVendor = False
                 else:
                     item.setHidden(True)
@@ -169,7 +169,7 @@ class CanteenSolutionWidget(QWidget):
 
     def setTimeToNow(self):
         # set the stored time information to current time
-        self.ui.dateTimeEdit.setDateTime(QDateTime(datetime.now()))
+        self.ui.dateTimeEdit.setDateTime(QDateTime.currentDateTime())
 
 
     def setTimeToNowLoop(self):

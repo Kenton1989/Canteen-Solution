@@ -28,8 +28,8 @@ class MainWindow(QMainWindow):
     def changeTime(self):
         # shorten the name
         centralWidget = self.ui.centralWidget
-        # prevent the regular updating behaviour
-        centralWidget.timer.start(10000000)
+
+        centralWidget.setTimeToNow()
         # change the ui
         centralWidget.setUserDefinedTime()
         # add hint for user

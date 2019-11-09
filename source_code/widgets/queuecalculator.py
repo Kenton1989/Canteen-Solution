@@ -64,7 +64,7 @@ class QueueCalculator(QDialog):
         
         # incase of the extremely large input
         if queueLen > 10000:
-            self.errorMsg("Serious? So many prople in Canteen A?")
+            self.errorMsg("Serious? So many people in Canteen A?")
             return
 
         # calculate the queue time
@@ -73,11 +73,13 @@ class QueueCalculator(QDialog):
         if queueTime < 0.1:
             self.output('It is your turn now.')
         elif queueTime < 1:
-            self.output('The queue time is about %.1f seconds' % (queueTime*60))
+            self.output('The queue time is about %.1f seconds.' % (queueTime*60))
+        elif queueTime < 1.05:
+            self.output('The queue time is about 1 minute.')
         elif queueTime < 30:
-            self.output('The queue time is about %.1f min'%queueTime)
+            self.output('The queue time is about %.1f minutes.' % queueTime)
         else:
-            self.output('The queue time is about %.1f min.\n'%queueTime +
+            self.output('The queue time is about %.1f minutes.\n'%queueTime +
                         'It is recommended to change a stall.')
         
 

@@ -64,28 +64,29 @@ class QueueCalculator(QDialog):
         
         # incase of the extremely large input
         if queueLen > 10000:
-            self.errorMsg("Serious? So many prople in Canteen A?")
+            self.errorMsg("Serious? So many people in Canteen A?")
             return
 
         # calculate the queue time
         queueTime = vendor.queueTime(queueLen)
 
         if queueTime < 0.1:
-            self.output('It is your turn now.')
+            self.output('It is your turn now :)')
         elif queueTime < 1:
             self.output('The queue time is about %.1f seconds' % (queueTime*60))
+        elif queueTime < 1.05:
+            self.output('The queue time is about 1 minute.')            
         elif queueTime < 30:
-            self.output('The queue time is about %.1f min'%queueTime)
+            self.output('The queue time is about %.1f minutes.' % queueTime)
         else:
-            self.output('The queue time is about %.1f min.\n'%queueTime +
+            self.output('The queue time is about %.1f minutes.\n' % queueTime +
                         'It is recommended to change a stall.')
         
 
 
-
     def getQueueLen(self):
         # return the queue number user input in ui.qNumLineEdit if it can be parsed
-		# if input is invalid, print error meaasge in the output label and return BAD_INPUT (-1)
+        # if input is invalid, print error meaasge in the output label and return BAD_INPUT (-1)
         inputVal = self.ui.qNumLineEdit.text().strip()
         if not inputVal:
             self.errorMsg('Error: The queue length is empty.')
@@ -117,6 +118,6 @@ class QueueCalculator(QDialog):
 
 
     def closeEvent(self, e):
-        _ = e # avoid unused parameter warning
         self.setToDefault()
+        super().closeEvent(e)
 

@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from PyQt5.QtCore import QTimer, QDateTime, Qt, QSize
 from PyQt5.QtWidgets import QWidget, QListWidgetItem
 

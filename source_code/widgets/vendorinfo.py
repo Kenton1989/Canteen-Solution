@@ -3,7 +3,7 @@ Author: Wei Kaitao (U1922499K)
 Description:
 Provide the widget to display the infomation of a single vendor.
 """
-from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QTableWidgetItem
 

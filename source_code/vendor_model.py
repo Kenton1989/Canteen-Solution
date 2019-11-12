@@ -1,3 +1,9 @@
+"""Module name: vendor_model
+Author: Wei Yao
+Description:
+Construct the database of vendors, and return it through allVendor().
+The database includes menu, photo, opening hour and queuing time of each vendor
+"""
 import csv
 from datetime import time, datetime
 

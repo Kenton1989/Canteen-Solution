@@ -1,3 +1,6 @@
+# Done by Wei Kaitao
+# Dislay information on main window, monitor user input until exit.
+
 import sys
 from PyQt5.QtWidgets import QApplication
 from vendor_model import allVendor

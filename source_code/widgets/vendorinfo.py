@@ -1,3 +1,5 @@
+# Done by Wei Kaitao
+
 from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QTableWidgetItem

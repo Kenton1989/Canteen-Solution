@@ -1,3 +1,5 @@
+# Done by Wei Kaitao
+
 from widgets.ui_mainwindow import Ui_mainWindow
 from widgets.queuecalculator import QueueCalculator
 from widgets.openingtimetablewidget import OpeningTimetableWidget

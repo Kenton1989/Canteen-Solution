@@ -1,3 +1,5 @@
+# Done by Wei Kaitao
+
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 from widgets.ui_openingtimetable import Ui_openingTimeTableWidget
 

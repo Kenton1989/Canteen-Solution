@@ -1,3 +1,5 @@
+# Done by Wei Kaitao
+
 from widgets.ui_queuecalculator import Ui_queueCalculator
 from PyQt5.QtWidgets import QDialog
 

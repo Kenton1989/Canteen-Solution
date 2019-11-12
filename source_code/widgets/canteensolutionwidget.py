@@ -1,3 +1,5 @@
+# Done by Wei Kaitao
+
 from datetime import datetime
 
 from PyQt5.QtCore import QTimer, QDateTime, Qt, QSize

@@ -1,3 +1,5 @@
+# Done by Wei Kaitao
+
 from PyQt5.QtCore import QTimer
 
 def make_label_can_blink(widget):

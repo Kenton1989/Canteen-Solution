@@ -1,3 +1,6 @@
+# Done by Wei Yao
+# Functions to return menu, opening hour, queuing time, vendor list
+
 import csv
 from datetime import time, datetime
 

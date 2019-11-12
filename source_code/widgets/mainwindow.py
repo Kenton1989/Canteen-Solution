@@ -1,8 +1,13 @@
+"""Module Name: mainwindow
+Author: Wei Kaitao (U1922499K)
+Description:
+Define the main window of our software
+"""
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QMainWindow
 from widgets.ui_mainwindow import Ui_mainWindow
 from widgets.queuecalculator import QueueCalculator
 from widgets.openingtimetablewidget import OpeningTimetableWidget
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow
 
 from widgets.blinking_widget import blink
 

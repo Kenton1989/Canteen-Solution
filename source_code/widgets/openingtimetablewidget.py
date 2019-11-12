@@ -1,3 +1,8 @@
+"""Module Name: openingtimetablewidget 
+Author: Wei Kaitao (U1922499K)
+Description:
+Provide a pop-up window to display the opening time table of all vendors.
+"""
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 from widgets.ui_openingtimetable import Ui_openingTimeTableWidget
 

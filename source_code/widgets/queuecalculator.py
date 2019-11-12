@@ -1,3 +1,8 @@
+"""Module Name: queuetimecalculator
+Author: Wei Kaitao (U1922499K)
+Description:
+Provide the window of the queue time calculator.
+"""
 from widgets.ui_queuecalculator import Ui_queueCalculator
 from PyQt5.QtWidgets import QDialog
 

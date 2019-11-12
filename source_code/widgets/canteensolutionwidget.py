@@ -1,3 +1,10 @@
+"""Module Name: canteensolutionwidget
+Author: Wei Kaitao (U1922499K)
+Description:
+Provide the central window of our program.
+Manage the time infomation.
+Present the infomation depend on time.
+"""
 from PyQt5.QtCore import QTimer, QDateTime, Qt, QSize
 from PyQt5.QtWidgets import QWidget, QListWidgetItem
 
@@ -20,7 +27,7 @@ class CanteenSolutionWidget(QWidget):
         # the item to be desplayed when there are
         # no vendors match the requirement of time
         self.ui.noAvailableItem = QListWidgetItem('No available stall')
-        # the  item of vender list that will vary as the database varies
+        # setup the vender list with the database
         self.ui.vendorListItems = []
         self.setUpVendorsList()
 
@@ -29,7 +36,7 @@ class CanteenSolutionWidget(QWidget):
         # set the time informaiton stores in the time widget to now
         self.setTimeToNow()
 
-        # set a timer and update the time after one second
+        # set a timer and update the time every one second
         self.timer.setSingleShot(True)
         self.timer.timeout.connect(self.setTimeToNowLoop)
         self.timer.start(1000)
@@ -76,6 +83,7 @@ class CanteenSolutionWidget(QWidget):
 
 
     def timeChangedHandler(self, qTimeStamp):
+        # check whether the user changes the time or the default timer changes the time.
         if self.timer.isActive():
             # if the timer is activated when time is change, it means that
             # the time is changed by user's behaviour, not the timer's signal
@@ -90,14 +98,14 @@ class CanteenSolutionWidget(QWidget):
 
 
     # A simple function to adjust the UI
-    # when the time info is default
+    # when the time is set by user
     def setUserDefinedTimeView(self):
         self.ui.timeLabel.setText('Time is set to: ')
         self.ui.setDefaultTimeBtn.show()
 
 
     # A simple function to adjust the UI
-    # when the time is set by user
+    # when the time info is default
     def setDefaultTimeView(self):
         self.ui.timeLabel.setText('Current Time: ')
         self.ui.setDefaultTimeBtn.hide()
@@ -109,7 +117,7 @@ class CanteenSolutionWidget(QWidget):
 
     def updateVendorList(self):
         noDisplayedVendor = True # To judge whether the list to be present is empty
-        # determine what stalls are to be shown
+        # determine what kind of stalls is to be shown
         showMode = self.ui.vendorTypeBox.currentIndex()
         # transform the QTime because the database only accepts python datetime
         timeStamp = self.ui.dateTimeEdit.dateTime().toPyDateTime()
@@ -148,7 +156,7 @@ class CanteenSolutionWidget(QWidget):
                         self.showVendorInfo(item)
                     item.setHidden(False)
 
-        else: # mode: showing all stalls
+        else: # corresponding mode: showing all stalls
             # in case of the database is empty
             noDisplayedVendor = len(self.ui.vendorListItems) == 0
             for item in self.ui.vendorListItems:
